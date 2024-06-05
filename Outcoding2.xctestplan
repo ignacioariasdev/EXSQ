@@ -17,7 +17,8 @@
       "containerPath" : "container:Outcoding2.xcodeproj",
       "identifier" : "3A3FB6F12C0E112E00B98A9F",
       "name" : "Outcoding2"
-    }
+    },
+    "testExecutionOrdering" : "random"
   },
   "testTargets" : [
     {
@@ -26,6 +27,13 @@
         "containerPath" : "container:Outcoding2.xcodeproj",
         "identifier" : "3AD4E6CC2C11046B000909D1",
         "name" : "OutcodingUnitTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Outcoding2.xcodeproj",
+        "identifier" : "3AD4E6E02C111411000909D1",
+        "name" : "OutcodingUITests"
       }
     }
   ],

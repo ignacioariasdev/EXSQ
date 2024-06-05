@@ -13,6 +13,7 @@ struct DetailsView: View {
     var body: some View {
         Text(title)
         Text(description)
+            .padding()
     }
 }
 
