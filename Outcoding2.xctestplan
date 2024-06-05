@@ -1,0 +1,33 @@
+{
+  "configurations" : [
+    {
+      "id" : "072F8429-256F-4983-BCB0-9C8708C1B32A",
+      "name" : "Test Scheme Action",
+      "options" : {
+        "targetForVariableExpansion" : {
+          "containerPath" : "container:Outcoding2.xcodeproj",
+          "identifier" : "3A3FB6F12C0E112E00B98A9F",
+          "name" : "Outcoding2"
+        }
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Outcoding2.xcodeproj",
+      "identifier" : "3A3FB6F12C0E112E00B98A9F",
+      "name" : "Outcoding2"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Outcoding2.xcodeproj",
+        "identifier" : "3AD4E6CC2C11046B000909D1",
+        "name" : "OutcodingUnitTests"
+      }
+    }
+  ],
+  "version" : 1
+}
