@@ -1,7 +1,8 @@
 # Ignacio Arias - 2024,Jun 5.
 
 - *thecatapi endpoint was used
-- here's a short public video on youtube about it: https://youtube.com/shorts/yD92e3y4N3M 
+- here's a short public video on youtube about it: https://youtube.com/shorts/yD92e3y4N3M
+- original link of the thecatapi: https://developers.thecatapi.com/view-account/ylX4blBYT9FaoVd6OhvR?report=bOoHBz-8t
 
 ## Application Architecture Overview:
 
