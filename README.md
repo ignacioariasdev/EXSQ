@@ -1,5 +1,8 @@
 # Ignacio Arias - 2024,Jun 5.
 
+- *thecatapi endpoint was used
+- here's a short public video on youtube about it: https://youtube.com/shorts/yD92e3y4N3M 
+
 ## Application Architecture Overview:
 
 The application follows the **MVVM (Model-View-ViewModel)** architecture pattern:
