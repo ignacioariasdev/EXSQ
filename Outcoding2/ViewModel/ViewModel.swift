@@ -37,6 +37,7 @@ class ViewModel: FetchablePagination {
     var api: ProtocolType
     @Published var anyError: String = ""
     @Published var httpStatusCode: Int = 0  // To store the HTTP status code
+    //    @Published var isLoadingPage: Bool = false
 
     init(api: ProtocolType) {
         self.api = api
@@ -74,7 +75,7 @@ class ViewModel: FetchablePagination {
         print("page: \(page)")
         do {
             let seq = try await fetchData(page: page)
-            print(seq.count)
+            print("Items Retrieved: ", seq.count)
             return listMain.append(contentsOf: seq)
         } catch {
             print("error UpdateList Error: \(error.localizedDescription)")

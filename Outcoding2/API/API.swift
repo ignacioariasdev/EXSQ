@@ -40,9 +40,8 @@ enum APIError: Error {
 
 struct API: APIProtocol {
     func buildUrl(page: Int) throws -> URL {
-        guard let rootUrl = URL(string: "https://api.thecatapi.com") else { throw APIError.invalidUrl }
+        guard let rootUrl = URL(string: "https://api.thecatapi.com"), ["http", "https"].contains(rootUrl.scheme) else { throw APIError.invalidUrl }
 
-        //        if page < 1 { throw APIError.invalidPage }
         guard page >= 1 else { throw APIError.invalidPage }
 
         var urlComponents = URLComponents(url: rootUrl.appending(path: "/v1/images/search"), resolvingAgainstBaseURL: false)

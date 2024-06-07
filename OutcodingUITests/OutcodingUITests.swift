@@ -22,7 +22,7 @@ class OutcodingUITests: XCTestCase {
         super.tearDown()
     }
 
-    func testNavigationToListDetail() {        
+    func testNavigationToListDetail() {
         // Start the test by making sure the app is ready and the list appears
         let breedsList = app.collectionViews["BreedsList"]
         XCTAssertTrue(breedsList.waitForExistence(timeout: 10), "The breeds list should exist.")
@@ -37,5 +37,6 @@ class OutcodingUITests: XCTestCase {
         let breedsList = app.collectionViews["BreedsList"]
         XCTAssertTrue(breedsList.waitForExistence(timeout: 10), "The breeds list should exist.")
     }
+
 }
 

@@ -16,13 +16,16 @@ struct ContentView: View {
         NavigationStack {
             List {
                 if !viewModel.anyError.isEmpty {
-                    Text("Waiting for backend ")
                     Text("HttpStatusCode: " + viewModel.httpStatusCode.description)
                     Text(viewModel.anyError)
                 }
-                if viewModel.listMain.isEmpty {
-                    Text("Waiting for backend ")
-                        .transition(.opacity)
+                if viewModel.listMain.isEmpty && viewModel.anyError.isEmpty {
+                    VStack {
+                        Text("Waiting for backend ")
+                        ProgressView()
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .padding()
                 } else {
                     ForEach(viewModel.listMain) { model in
                         ForEach(model.breeds) { breeds in
@@ -31,6 +34,7 @@ struct ContentView: View {
                             } label: {
                                 if let imageUrl = try? viewModel.getImageUrl(from: model.url) {
                                     Dashboard(imageUrl: imageUrl, breed: breeds)
+                                        .equatable()
                                         .accessibilityElement(children: .combine)
                                 } else {
                                     Text("Image not available")
@@ -44,19 +48,20 @@ struct ContentView: View {
                             }
                         }
                     }
-                    .transition(.slide)
+                    .transition(.blurReplace)
                 }
             }
+            .listStyle(.plain)
             .accessibilityIdentifier("BreedsList")
             .animation(.easeInOut, value: viewModel.listMain.isEmpty)
         }
         .navigationTitle("Breeds List")
-           .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 
-struct Dashboard: View {
+struct Dashboard: View, Equatable {
     let imageUrl: URL
     let breed: ModelResults
 
@@ -64,7 +69,6 @@ struct Dashboard: View {
         LazyVStack {
             Text(breed.name)
                 .accessibilityElement(children: .combine)
-
 
             KFImage(imageUrl)
                 .resizable()
@@ -77,6 +81,14 @@ struct Dashboard: View {
 
         }
     }
+
+    static func == (lhs: Dashboard, rhs: Dashboard) -> Bool {
+        return lhs.breed.appId == rhs.breed.appId &&
+        lhs.imageUrl == rhs.imageUrl &&
+        lhs.breed.name == rhs.breed.name
+    }
+
+
 }
 
 
