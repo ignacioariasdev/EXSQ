@@ -15,6 +15,11 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             List {
+                if !viewModel.anyError.isEmpty {
+                    Text("Waiting for backend ")
+                    Text("HttpStatusCode: " + viewModel.httpStatusCode.description)
+                    Text(viewModel.anyError)
+                }
                 if viewModel.listMain.isEmpty {
                     Text("Waiting for backend ")
                         .transition(.opacity)

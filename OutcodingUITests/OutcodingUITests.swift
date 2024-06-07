@@ -24,17 +24,18 @@ class OutcodingUITests: XCTestCase {
 
     func testNavigationToListDetail() {        
         // Start the test by making sure the app is ready and the list appears
-        let app = XCUIApplication()
-        app.launch()
-
         let breedsList = app.collectionViews["BreedsList"]
         XCTAssertTrue(breedsList.waitForExistence(timeout: 10), "The breeds list should exist.")
 
         // Tap the first row in the list
         let firstRow = breedsList.cells.firstMatch // We use firstMatch to simply select the first cell
         XCTAssertTrue(firstRow.waitForExistence(timeout: 5), "The first row should be present.")
-
         firstRow.tap()
+    }
+
+    func testNavigationToListScroll() {
+        let breedsList = app.collectionViews["BreedsList"]
+        XCTAssertTrue(breedsList.waitForExistence(timeout: 10), "The breeds list should exist.")
     }
 }
 

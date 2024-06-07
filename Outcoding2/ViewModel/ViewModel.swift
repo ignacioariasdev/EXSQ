@@ -17,8 +17,7 @@ protocol FetchablePagination: ObservableObject {
     var api: ProtocolType { get }
 
     func fetchData(page: Int) async throws -> [GeneralType]
-    func updateList(page: Int) async throws
-//    func didDisplayedLastItem(item: SpecificType) async throws
+    func updateList(page: Int) async
     func didDisplayedLastItem(item: GeneralType) async throws
 
     func getImageUrl(from urlString: String) throws -> URL
@@ -36,20 +35,42 @@ class ViewModel: FetchablePagination {
     var currentPage: Int = 1
     @Published var listMain: [GeneralType] = []
     var api: ProtocolType
+    @Published var anyError: String = ""
+    @Published var httpStatusCode: Int = 0  // To store the HTTP status code
 
     init(api: ProtocolType) {
         self.api = api
         Task {
-            try await updateList()
+            await updateList()
         }
     }
 
     func fetchData(page: Int) async throws -> [Model] {
-        return try await api.decodeFromAPI(page: page)
+        do {
+            return try await api.decodeFromAPI(page: page)
+        } catch let apiError as APIError {
+            switch apiError {
+            case .invalidDecoding(let statusCode, let error):
+                DispatchQueue.main.async {
+                    self.httpStatusCode = statusCode
+                    self.anyError = "Error \(statusCode): \(error.localizedDescription)"
+                }
+            default:
+                DispatchQueue.main.async {
+                    self.anyError = apiError.localizedDescription
+                }
+            }
+            throw apiError
+        } catch {
+            DispatchQueue.main.async {
+                self.anyError = error.localizedDescription
+            }
+            throw error
+        }
     }
 
     @MainActor
-    func updateList(page: Int = 1) async throws {
+    func updateList(page: Int = 1) async {
         print("page: \(page)")
         do {
             let seq = try await fetchData(page: page)
@@ -60,19 +81,14 @@ class ViewModel: FetchablePagination {
         }
     }
 
-
     func didDisplayedLastItem(item: GeneralType) async throws {
         print("is it the last item?")
-        
+
         if listMain.last == item {
             print("Page incremented")
             currentPage += 1
-            do {
-                print("waiting for updatedList \(currentPage)")
-                try await updateList(page: currentPage)
-            } catch {
-                print("error UpdateList Error: \(error.localizedDescription)")
-            }
+            print("waiting for updatedList \(currentPage)")
+            await updateList(page: currentPage)
         }
     }
 
@@ -82,8 +98,4 @@ class ViewModel: FetchablePagination {
         }
         return url
     }
-
-
-
-
 }
