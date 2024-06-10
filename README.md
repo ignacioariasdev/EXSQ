@@ -29,8 +29,8 @@ This iOS application showcases a curated list of cat breeds, fetched from a remo
 
 ## Application Architecture
 
-
-```+--------------------+      +--------------------+       +-------------+
+<pre>
++--------------------+      +--------------------+       +-------------+
 |       View        | ---> |     ViewModel      | ----> |    Model    |
 +--------------------+      +--------------------+       +-------------+
      (ContentView)             (ObservableObject)           (CatBreed)
@@ -39,8 +39,9 @@ This iOS application showcases a curated list of cat breeds, fetched from a remo
           |                      +-------------+
           |                      |   API       |
           +----------------------+ (Protocol)  |
-                                 +-------------+ 
-```                                                                
+                                 +-------------+                                 
+</pre>
+                                 
                                  
 
 
