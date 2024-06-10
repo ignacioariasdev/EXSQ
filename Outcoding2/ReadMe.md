@@ -27,13 +27,13 @@ This iOS application showcases a curated list of cat breeds, fetched from a remo
 +--------------------+      +--------------------+       +-------------+
 |       View        | ---> |     ViewModel      | ----> |    Model    |
 +--------------------+      +--------------------+       +-------------+
-(ContentView)             (ObservableObject)           (CatBreed)
-^                           |
-|                           |
-|                      +-------------+
-|                      |   API       |
-+----------------------+ (Protocol)  |
-+-------------+
+     (ContentView)             (ObservableObject)           (CatBreed)
+          ^                           |
+          |                           |
+          |                      +-------------+
+          |                      |   API       |
+          +----------------------+ (Protocol)  |
+                                 +-------------+ 
 
 
 - **Views:** SwiftUI views (`ContentView`, `Dashboard`, `DetailsView`) responsible for rendering UI elements and handling user interactions.

@@ -1,20 +1,54 @@
-# Ignacio Arias - 2024,Jun 5.
+# Cat Breeds App – MVVM Architecture with Protocol-Oriented Networking
 
-- *thecatapi endpoint was used
-- here's a short public video on youtube about it: https://youtube.com/shorts/yD92e3y4N3M
-- original link of the thecatapi: https://developers.thecatapi.com/view-account/ylX4blBYT9FaoVd6OhvR?report=bOoHBz-8t
+By Ignacio Arias – June 5, 2024
 
-## Application Architecture Overview:
+[YouTube Overview of the App](https://youtube.com/shorts/yD92e3y4N3M) | [API Documentation](https://developers.thecatapi.com/view-account/ylX4blBYT9FaoVd6OhvR?report=bOoHBz-8t)
 
-The application follows the **MVVM (Model-View-ViewModel)** architecture pattern:
+## Project Overview
 
-- **Views:** Handle the UI and user interactions. Observe changes in the ViewModel.
-- **ViewModels:** Manage data logic and interact with Models.
-- **Models:** Represent domain-specific data and business logic.
-- **API Services:** Perform network operations, following protocol-based design.
+This iOS application showcases a curated list of cat breeds, fetched from a remote API and presented with smooth pagination and detailed views. The project emphasizes a clean **MVVM** architecture, protocol-oriented network interactions, and performance optimizations for a seamless user experience.
 
-## Detailed Component Description:
+## Key Features & Technologies
 
+- **Architecture**:
+  - **MVVM (Model-View-ViewModel)**: Decouples UI (Views), data logic (ViewModels), and data models (Models).
+  - **Protocol-Oriented Networking**: Uses protocols to define API contracts, enhancing testability and flexibility.
+  
+- **UI**:
+  - **SwiftUI**: Modern declarative UI framework.
+  - **NavigationStack**: Hierarchical navigation for smooth transitions.
+  - **Kingfisher**: High-performance image loading and caching.
+
+- **Network**:
+  - **URLSession**: Foundation's networking framework.
+  - **JSONDecoder**: Swift's built-in JSON parsing.
+
+- **Data**:
+  - **Pagination**: Efficiently loads data in chunks to optimize performance.
+  - **Concurrency**: `@MainActor` annotation ensures safe UI updates on the main thread.
+
+## Application Architecture
+
++--------------------+      +--------------------+       +-------------+
+|       View        | ---> |     ViewModel      | ----> |    Model    |
++--------------------+      +--------------------+       +-------------+
+     (ContentView)             (ObservableObject)           (CatBreed)
+          ^                           |
+          |                           |
+          |                      +-------------+
+          |                      |   API       |
+          +----------------------+ (Protocol)  |
+                                 +-------------+ 
+                                 
+                                 
+
+
+- **Views:** SwiftUI views (`ContentView`, `Dashboard`, `DetailsView`) responsible for rendering UI elements and handling user interactions.
+- **ViewModel:** An `ObservableObject` that fetches, manages, and provides data to the views. It implements the `FetchablePagination` protocol for pagination logic.
+- **Model:** Represents a single cat breed (`CatBreed` struct) with its properties (name, description, images, etc.).
+- **API:** Protocol (`APIProtocol`) defining the interface for network requests. The concrete implementation (`API`) handles URLSession interactions and JSON decoding.
+
+## Detailed Component Description: 
 ### `ContentView`:
 
 - Root view displaying a list of cat breeds.
@@ -41,6 +75,7 @@ The application follows the **MVVM (Model-View-ViewModel)** architecture pattern
 - Implements `APIProtocol` for network logic.
 - Handles URL construction and network responses.
 
+
 ## Interaction Flow:
 
 1. App initializes API and ViewModel.
@@ -48,31 +83,19 @@ The application follows the **MVVM (Model-View-ViewModel)** architecture pattern
 3. Scrolling fetches and displays more data dynamically.
 4. Selecting a breed navigates to `DetailsView`.
 
-## Code Review and Recommendations:
 
-### Code Organization:
+## Flow Diagram
 
-- **API Key Exposure:** The API key would be moved to a mid point proxy from a regular server so is not exposed to the repo, is hardcoded for ease of the interview avoding the set up of the server.
- 
-- **Error Handling:** Add more robust error handling for network calls and data decoding.
-- **Pagination Logic:** Refactor for improved clarity and efficiency.
+```mermaid
+graph TD;
+  A[App Launch] --> B[ContentView Load]
+  B --> C[ViewModel Init]
+  C --> D[API Fetch Initial Data]
+  D --> |Success| E[Display Breeds]
+  D --> |Error| F[Display Error]
+  E --> G[User Scrolls]
+  G --> H[Reach Pagination Threshold]
+  H --> D
+  E --> I[User Taps Breed]
+  I --> J[DetailsView Load]
 
-### Performance Considerations:
-
-- **Image Loading:** Is optimized with Kingfisher's image caching.
-- **Concurrency:**  `@MainActor`  is used for safe MainThread updates.
-
-## Unit Testing Strategy:
-
-### ViewModel Testing:
-
-- Mock `APIProtocol` for testing.
-- Test pagination logic and data loading.
-
-### API Service Testing:
-
-- Test URL construction and response handling.
-
-### View Testing:
-
-- Test loading states, error views, and navigation in `ContentView`.
