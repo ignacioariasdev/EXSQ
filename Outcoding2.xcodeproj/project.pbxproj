@@ -18,6 +18,7 @@
 		3A3FB7112C0E2F9E00B98A9F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3A3FB7102C0E2F9E00B98A9F /* Kingfisher */; };
 		3A5F9E782C167EA5003DC23B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3A5F9E772C167EA5003DC23B /* README.md */; };
 		3A6E845F2C253B16000A7222 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3A6E845E2C253B16000A7222 /* Localizable.xcstrings */; };
+		3A6E84612C254250000A7222 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3A6E84602C254250000A7222 /* README.md */; };
 		3ACA4FC22C137A38002340D9 /* DetailsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACA4FC12C137A38002340D9 /* DetailsViewTests.swift */; };
 		3AD4E6D02C11046B000909D1 /* OutcodingUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD4E6CF2C11046B000909D1 /* OutcodingUnitTests.swift */; };
 		3AD4E6D72C110516000909D1 /* MockAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD4E6D62C110516000909D1 /* MockAPI.swift */; };
@@ -56,6 +57,7 @@
 		3A3FB70D2C0E119900B98A9F /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		3A5F9E772C167EA5003DC23B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		3A6E845E2C253B16000A7222 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		3A6E84602C254250000A7222 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3ACA4FC12C137A38002340D9 /* DetailsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewTests.swift; sourceTree = "<group>"; };
 		3AD4E6CD2C11046B000909D1 /* OutcodingUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OutcodingUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AD4E6CF2C11046B000909D1 /* OutcodingUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutcodingUnitTests.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				3AD4E6DC2C110AEE000909D1 /* Outcoding2.xctestplan */,
+				3A6E84602C254250000A7222 /* README.md */,
 				3A3FB6F42C0E112E00B98A9F /* Outcoding2 */,
 				3AD4E6CE2C11046B000909D1 /* OutcodingUnitTests */,
 				3AD4E6E22C111411000909D1 /* OutcodingUITests */,
@@ -305,6 +308,7 @@
 			files = (
 				3A5F9E782C167EA5003DC23B /* README.md in Resources */,
 				3A3FB6FD2C0E112F00B98A9F /* Preview Assets.xcassets in Resources */,
+				3A6E84612C254250000A7222 /* README.md in Resources */,
 				3A6E845F2C253B16000A7222 /* Localizable.xcstrings in Resources */,
 				3A3FB6FA2C0E112F00B98A9F /* Assets.xcassets in Resources */,
 			);

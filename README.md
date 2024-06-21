@@ -2,7 +2,7 @@
 
 By Ignacio Arias – June 5, 2024
 
-[YouTube Overview of the App](https://youtube.com/shorts/yD92e3y4N3M) | [API Documentation](https://developers.thecatapi.com/view-account/ylX4blBYT9FaoVd6OhvR?report=bOoHBz-8t)
+[YouTube Overview of the App](https://youtube.com/shorts/x1NqHpwW7dA?feature=share) | [API Documentation](https://developers.thecatapi.com/view-account/ylX4blBYT9FaoVd6OhvR?report=bOoHBz-8t)
 
 ## Project Overview
 
