@@ -7,16 +7,12 @@
 
 import Foundation
 
-/*
- https://api.thecatapi.com/v1/images/search?api_key=live_TDxkreHiUYdSJTik1dbGMJe8ahwh8DAitDgQyQa0d4BsOfIOwfnLtm5KCJMCUpFE&limit=1&has_breeds=1
- */
-
 struct Model: Codable, Identifiable, Equatable {
     var id: UUID = UUID()
     let appId: String
     let url: String
     let breeds: [ModelResults]
-
+    
     enum CodingKeys: String, CodingKey {
         case appId = "id"
         case url
@@ -29,10 +25,16 @@ struct ModelResults: Codable, Identifiable, Equatable {
     let appId: String
     let name: String
     let description: String
-
+    let origin: String
+    let lifeSpan: String
+    let affectionLevel: Int
+    
     enum CodingKeys: String, CodingKey  {
         case appId = "id"
         case name
         case description
+        case origin
+        case lifeSpan = "life_span"
+        case affectionLevel = "affection_level"
     }
 }

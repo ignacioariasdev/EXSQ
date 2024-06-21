@@ -11,15 +11,15 @@ protocol FetchablePagination: ObservableObject {
     associatedtype GeneralType
     associatedtype SpecificType
     associatedtype ProtocolType
-
+    
     var currentPage: Int { get set }
     var listMain: [GeneralType] { get set }
     var api: ProtocolType { get }
-
+    
     func fetchData(page: Int) async throws -> [GeneralType]
     func updateList(page: Int) async
     func didDisplayedLastItem(item: GeneralType) async throws
-
+    
     func getImageUrl(from urlString: String) throws -> URL
 }
 
@@ -31,21 +31,20 @@ class ViewModel: FetchablePagination {
     typealias GeneralType = Model
     typealias SpecificType = ModelResults
     typealias ProtocolType = APIProtocol
-
+    
     var currentPage: Int = 1
     @Published var listMain: [GeneralType] = []
     var api: ProtocolType
     @Published var anyError: String = ""
     @Published var httpStatusCode: Int = 0  // To store the HTTP status code
-    //    @Published var isLoadingPage: Bool = false
-
+    
     init(api: ProtocolType) {
         self.api = api
         Task {
             await updateList()
         }
     }
-
+    
     func fetchData(page: Int) async throws -> [Model] {
         do {
             return try await api.decodeFromAPI(page: page)
@@ -69,7 +68,7 @@ class ViewModel: FetchablePagination {
             throw error
         }
     }
-
+    
     @MainActor
     func updateList(page: Int = 1) async {
         print("page: \(page)")
@@ -81,10 +80,8 @@ class ViewModel: FetchablePagination {
             print("error UpdateList Error: \(error.localizedDescription)")
         }
     }
-
+    
     func didDisplayedLastItem(item: GeneralType) async throws {
-        print("is it the last item?")
-
         if listMain.last == item {
             print("Page incremented")
             currentPage += 1
@@ -92,7 +89,7 @@ class ViewModel: FetchablePagination {
             await updateList(page: currentPage)
         }
     }
-
+    
     func getImageUrl(from urlString: String) throws -> URL {
         guard let url = URL(string: urlString), ["http", "https"].contains(url.scheme) else {
             throw ViewModelError.invalidUrl

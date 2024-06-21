@@ -1,0 +1,27 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Affection Level: %lld" : {
+
+    },
+    "Breeds List" : {
+
+    },
+    "Image not available" : {
+
+    },
+    "Image of %@" : {
+
+    },
+    "Life Span: %@" : {
+
+    },
+    "No image available for %@" : {
+
+    },
+    "Waiting for backend " : {
+
+    }
+  },
+  "version" : "1.0"
+}

@@ -52,7 +52,7 @@ final class APIServiceTests: XCTestCase {
     func testResponseHandlingSuccess() async throws {
         // Prepare expected model data
         let expectedModel = Model(appId: "test", url: "https://example.com", breeds: [
-            ModelResults(appId: "breedId", name: "BreedName", description: "A cat breed.")
+            ModelResults(appId: "breedId", name: "BreedName", description: "A cat breed.", origin: "US", lifeSpan: "15-20", affectionLevel: 5)
         ])
         let jsonData = try JSONEncoder().encode([expectedModel])
         mockAPI.rawData = jsonData // Set the raw JSON data to be returned by the mock API

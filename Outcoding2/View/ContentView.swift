@@ -9,9 +9,9 @@ import SwiftUI
 import Kingfisher
 
 struct ContentView: View {
-
+    
     @EnvironmentObject var viewModel: ViewModel
-
+    
     var body: some View {
         NavigationStack {
             List {
@@ -30,7 +30,12 @@ struct ContentView: View {
                     ForEach(viewModel.listMain) { model in
                         ForEach(model.breeds) { breeds in
                             NavigationLink {
-                                DetailsView(title: breeds.name, description: breeds.description)
+                                if let imageUrl = try? viewModel.getImageUrl(from: model.url) {
+                                    DetailsView(imageUrl: imageUrl, title: breeds.name, description: breeds.description, origin: breeds.origin, lifeSpan: breeds.lifeSpan, affectionLevel: breeds.affectionLevel)
+                                } else {
+                                    Text("Image not available")
+                                        .accessibilityLabel("No image available for \(breeds.name)")
+                                }
                             } label: {
                                 if let imageUrl = try? viewModel.getImageUrl(from: model.url) {
                                     Dashboard(imageUrl: imageUrl, breed: breeds)
@@ -64,12 +69,12 @@ struct ContentView: View {
 struct Dashboard: View, Equatable {
     let imageUrl: URL
     let breed: ModelResults
-
+    
     var body: some View {
         LazyVStack {
             Text(breed.name)
                 .accessibilityElement(children: .combine)
-
+            
             KFImage(imageUrl)
                 .resizable()
                 .placeholder {
@@ -78,17 +83,14 @@ struct Dashboard: View, Equatable {
                 .cornerRadius(10)
                 .scaledToFit()
                 .accessibilityLabel("Image of \(breed.name)")
-
         }
     }
-
+    
     static func == (lhs: Dashboard, rhs: Dashboard) -> Bool {
         return lhs.breed.appId == rhs.breed.appId &&
         lhs.imageUrl == rhs.imageUrl &&
         lhs.breed.name == rhs.breed.name
     }
-
-
 }
 
 

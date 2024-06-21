@@ -9,16 +9,14 @@ import SwiftUI
 
 @main
 struct Outcoding2App: App {
-
-
     var viewModel: ViewModel
     var api: API
-
+    
     init() {
         api = API()
         viewModel = ViewModel(api: api)
     }
-
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
